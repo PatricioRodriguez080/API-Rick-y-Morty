@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import NavBar from "@/Components/NavBar";
 
 export const metadata: Metadata = {
   title: "Rick and Morty App",
@@ -13,6 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
+      <NavBar />
+
       <body>
         {children}
       </body>
