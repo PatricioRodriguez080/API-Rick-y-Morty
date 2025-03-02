@@ -17,7 +17,7 @@ export default function RootLayout({
 
       <NavBar />
 
-      <body>
+      <body className="bg-gray-100">
         {children}
       </body>
     </html>
