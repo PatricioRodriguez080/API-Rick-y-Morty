@@ -6,7 +6,9 @@ const CharacterListContainer = async () => {
     const characters: Character[] | null = await getCharacters()
 
     return (
-        <CharacterList characters={characters} />
+        <div className="p-16">
+            <CharacterList characters={characters} />
+        </div>
     )
 }
 
