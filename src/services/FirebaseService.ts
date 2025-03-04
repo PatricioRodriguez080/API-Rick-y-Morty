@@ -17,6 +17,7 @@ const db = getFirestore()
 
 export const postFavoriteCharacter = async (character: Character) => {
     try {
+        console.log("LLEGUE HASTA ACA")
         const characterRef = doc(db, "Favorites", character.id.toString())
         await setDoc(characterRef, character);
     } catch (error) {

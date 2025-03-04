@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Character } from "@/src/types/RickAndMortyTypes"
 import StarIcon from "./StarIcon"
+import { postFavoriteCharacter } from "@/src/services/FirebaseService"
 
 interface CharacterCardProps {
     character: Character
@@ -10,6 +11,13 @@ interface CharacterCardProps {
 
 const CharacterCard = ({ character }: CharacterCardProps) => {
     const [isFavorite, setIsFavorite] = useState(false)
+
+    const handleFavoriteButton = () => {
+        setIsFavorite(!isFavorite)
+        if (!isFavorite) {
+            postFavoriteCharacter(character)
+        }
+    }
 
     return (
         <div className="flex m-4 bg-gray-500 text-white rounded-lg w-full h-56">
@@ -22,7 +30,7 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
                     <div className={`rounded-full w-2 h-2 ${character.status === "Alive" ? "bg-green-500" : "bg-red-500"}`}></div>
                     <h3 className="ml-2">{character.status}</h3>
                 </div>
-                <button onClick={() => setIsFavorite(!isFavorite)} className="justify-items-start">
+                <button onClick={handleFavoriteButton} className="justify-items-start">
                     <StarIcon filled={isFavorite} />
                 </button>
             </div>
