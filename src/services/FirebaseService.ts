@@ -24,7 +24,7 @@ export const postFavoriteCharacter = async (character: Character) => {
     }
 }
 
-export const getFavoritesCharacters = async () => {
+export const getFavoriteCharacters = async () => {
     try {
         const favoritesCollection = collection(db, "Favorites")
         const snapshot = await getDocs(favoritesCollection)
