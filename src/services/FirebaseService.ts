@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { getFirestore, setDoc, doc, collection, getDocs } from "firebase/firestore";
 import { Character } from "../types/RickAndMortyTypes";
 
 const firebaseConfig = {
@@ -17,10 +17,21 @@ const db = getFirestore()
 
 export const postFavoriteCharacter = async (character: Character) => {
     try {
-        console.log("LLEGUE HASTA ACA")
         const characterRef = doc(db, "Favorites", character.id.toString())
-        await setDoc(characterRef, character);
+        await setDoc(characterRef, character)
     } catch (error) {
-        console.error("Error al guardar el personaje:", error);
+        console.error("Error al guardar el personaje:", error)
+    }
+}
+
+export const getFavoritesCharacters = async () => {
+    try {
+        const favoritesCollection = collection(db, "Favorites")
+        const snapshot = await getDocs(favoritesCollection)
+        const favorites: Character[] = snapshot.docs.map(doc => doc.data() as Character)
+        return favorites
+    } catch (error) {
+        console.error("Error al traer personajes favoritos:", error)
+        return []
     }
 }
