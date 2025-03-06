@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, setDoc, doc, collection, getDocs } from "firebase/firestore";
+import { getFirestore, setDoc, doc, collection, getDocs, query, where, deleteDoc } from "firebase/firestore";
 import { Character } from "../types/RickAndMortyTypes";
 
 const firebaseConfig = {
@@ -33,5 +33,14 @@ export const getFavoriteCharacters = async () => {
     } catch (error) {
         console.error("Error al traer personajes favoritos:", error)
         return []
+    }
+}
+
+export const removeFavoriteCharacter = async (characterId: number) => {
+    try {
+        const characterRef = doc(db, "Favorites", characterId.toString())
+        await deleteDoc(characterRef)
+    } catch (error) {
+        console.error("Error eliminando favorito:", error)
     }
 }

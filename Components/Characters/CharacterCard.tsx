@@ -1,22 +1,33 @@
 "use client"
-
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Character } from "@/src/types/RickAndMortyTypes"
 import StarIcon from "./StarIcon"
-import { postFavoriteCharacter } from "@/src/services/FirebaseService"
+import { getFavoriteCharacters, postFavoriteCharacter, removeFavoriteCharacter } from "@/src/services/FirebaseService"
 
 interface CharacterCardProps {
     character: Character
 }
 
 const CharacterCard = ({ character }: CharacterCardProps) => {
-    const [isFavorite, setIsFavorite] = useState(false)
+    const [isFavorite, setIsFavorite] = useState<boolean>(false)
+
+    useEffect(() => {
+        const fetchFavorites = async () => {
+            const favorites: Character[] = await getFavoriteCharacters()
+            const isAlreadyFavorite: boolean = favorites.some(fav => fav.id === character.id)
+            setIsFavorite(isAlreadyFavorite)
+        }
+
+        fetchFavorites()
+    }, [character.id])
 
     const handleFavoriteButton = () => {
-        setIsFavorite(!isFavorite)
-        if (!isFavorite) {
+        if (isFavorite) {
+            removeFavoriteCharacter(character.id)
+        } else {
             postFavoriteCharacter(character)
         }
+        setIsFavorite(!isFavorite)
     }
 
     return (
