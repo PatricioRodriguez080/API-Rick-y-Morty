@@ -41,7 +41,7 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
                     <div className={`rounded-full w-2 h-2 ${character.status === "Alive" ? "bg-green-500" : "bg-red-500"}`}></div>
                     <h3 className="ml-2">{character.status}</h3>
                 </div>
-                <button onClick={handleFavoriteButton} className="justify-items-start">
+                <button onClick={handleFavoriteButton} className="flex justify-items-start">
                     <StarIcon filled={isFavorite} />
                 </button>
             </div>
