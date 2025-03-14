@@ -1,18 +1,18 @@
 import { Character } from "../types/RickAndMortyTypes"
 
-export const getCharacters = async (): Promise<Character[] | null> => {
+
+export const getCharacters = async (selectedFilter?: string): Promise<Character[] | null> => {
     try {
-        const urls = [
-            "https://rickandmortyapi.com/api/character?page=1",
-            "https://rickandmortyapi.com/api/character?page=2"
-        ]
+        let baseUrl = "https://rickandmortyapi.com/api/character"
+        if (selectedFilter) {
+            baseUrl += `?status=${selectedFilter}`
+        }
+        const response = await fetch(baseUrl)
+        const data = await response.json()
+        return data.results
 
-        const responses = await Promise.all(urls.map(url => fetch(url)))
-        const data = await Promise.all(responses.map(res => res.json()))
-
-        return data.flatMap(d => d.results)
     } catch (error) {
-        console.log(error)
+        console.error("Error en getCharacters:", error)
         return null
     }
 }

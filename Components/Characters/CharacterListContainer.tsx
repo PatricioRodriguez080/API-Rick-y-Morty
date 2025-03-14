@@ -14,12 +14,12 @@ const CharacterListContainer = ({ selectedValue }: CharacterListContainerProps) 
 
     useEffect(() => {
         const fetchCharacters = async () => {
-            const fetchedCharacters = await getCharacters()
+            const fetchedCharacters = await getCharacters(selectedValue)
             setCharacters(fetchedCharacters)
             setLoading(false)
         }
         fetchCharacters()
-    }, [])
+    }, [selectedValue])
 
     return (
         <div className="p-16">
