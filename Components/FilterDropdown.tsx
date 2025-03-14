@@ -23,10 +23,10 @@ const FilterDropdown = ({ setSelectedValue }: FilterDropdownProps) => {
                 <option value="" disabled>
                     Choose an option
                 </option>
-                <option value="alive">Alive</option>
-                <option value="dead">Dead</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="Alive">Alive</option>
+                <option value="Dead">Dead</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
         </form>
     )

@@ -1,11 +1,17 @@
 import { Character } from "../types/RickAndMortyTypes"
 
-
 export const getCharacters = async (selectedFilter?: string): Promise<Character[] | null> => {
     try {
         let baseUrl = "https://rickandmortyapi.com/api/character"
         if (selectedFilter) {
-            baseUrl += `?status=${selectedFilter}`
+            const statusOptions = ["Alive", "Dead", "unknown"]
+            const genderOptions = ["Male", "Female", "Genderless", "unknown"]
+
+            if (statusOptions.includes(selectedFilter)) {
+                baseUrl += `?status=${selectedFilter}`
+            } else if (genderOptions.includes(selectedFilter)) {
+                baseUrl += `?gender=${selectedFilter}`
+            }
         }
         const response = await fetch(baseUrl)
         const data = await response.json()
