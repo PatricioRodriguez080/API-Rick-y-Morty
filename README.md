@@ -17,11 +17,11 @@ Este es mi proyecto consumiendo la API de Rick and Morty, con la posibilidad de 
 -  **Información sobre la ubicación** actual y el primer episodio en el que apareció.  
 
 ## 📸 Imágenes del proyecto  
-![Página principal](public/Images/Readme1.png)  
-![Filtrado](public/Images/Readme2.png)  
-![Página favoritos](public/Images/Readme3.png)  
-![Detalles del personaje](public/Images/Readme4.png)  
-![Detalles del personaje y Página principal mobile](public/Images/Readme5.png)  
+![Página principal](./public/images/readme1.png)  
+![Filtrado](./public/Images/Readme2.png)  
+![Página favoritos](./public/Images/Readme3.png)  
+![Detalles del personaje](./public/Images/Readme4.png)  
+![Detalles del personaje y Página principal mobile](./public/Images/Readme5.png)  
 
 ## 🚀 ¿Dónde puedo ver el proyecto?  
 Puedes ver el proyecto en: [Explorador de Personajes]()  
